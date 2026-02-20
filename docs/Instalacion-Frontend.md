@@ -1,35 +1,45 @@
-# Creación del Proyecto
+# 🚀 Instalación Frontend ERP Enterprise (Guía Profesional)
 
-**Sigue los siguientes pasos:**
+Esta guía está diseñada para crear un **Frontend ERP Enterprise profesional** basado en:
 
-1) Crear proyecto Nuxt 3 (forzado) + Node 24 enforcement
-1.1 Comandos
+- ✅ Nuxt 3 (forzado — NO Nuxt 2 ni Nuxt 4)
+- ✅ Node.js >= 24
+- ✅ TailwindCSS v3
+- ✅ DaisyUI v4
+- ✅ Arquitectura enterprise modular
 
-```
-# 1) Crear carpeta (tu estructura obligatoria)
+---
+
+# 📦 1. Creación del Proyecto
+
+## 🎯 Objetivo
+Crear el proyecto asegurando versiones correctas desde el inicio para evitar problemas de compatibilidad.
+
+## 1 Crear proyecto Nuxt 3 (forzado)
+
+```bash
+# Crear carpeta base
 mkdir erp-frontend
 cd erp-frontend
 
-# 2) Forzar Nuxt 3 (no Nuxt 4)
+# Forzar versión específica de Nuxt 3
 npx nuxi@3.21.0 init .
 
-# 3) Instalar deps base
+# Instalar dependencias iniciales
 npm install
 ```
 
-1.2 Crear .nvmrc
+# 🧰 2. Forzar Node.js >= 24
 
-Archivo: erp-frontend/.nvmrc
+### Archivo: erp-frontend/.nvmrc
 
 ```
 24
 ```
 
-2) Instalar TailwindCSS v3 + DaisyUI v4 + Pinia
+# 🎨 3. Instalar UI Stack (Tailwind + DaisyUI + Pinia)
 
-Tailwind v3 instalación y config base (docs v3).
-
-2.1 Comandos
+### Comandos
 ```
 # TailwindCSS v3 + PostCSS
 npm i -D tailwindcss@^3 postcss autoprefixer
@@ -41,9 +51,9 @@ npm i -D daisyui@^4
 npm i @pinia/nuxt
 ```
 
-3) Estructura enterprise (carpetas obligatorias)
+# 🧱 4. Estructura Enterprise Obligatoria
 
-Ejecuta:
+### Ejecuta:
 ```
 mkdir -p assets/css \
 components/ui components/layout components/users components/roles components/permissions components/suppliers components/products \
@@ -51,11 +61,11 @@ composables middleware pages/users pages/roles pages/permissions pages/suppliers
 plugins stores types utils layouts
 ```
 
-4) package.json (Node >=24 + preinstall que falla)
+# ⚙️ 5. package.json (Node enforcement)
 
-Reemplaza tu erp-frontend/package.json completo por esto:
+## Reemplaza tu erp-frontend/package.json completo por esto:
 
-Archivo: erp-frontend/package.json
+### Archivo: erp-frontend/package.json
 ```
 {
   "name": "erp-frontend",
@@ -87,19 +97,20 @@ Archivo: erp-frontend/package.json
 }
 ```
 
-5) Tailwind + DaisyUI + tema ERP + dark mode
-5.1 CSS principal de Tailwind
+# 🎨 6. Configuración Tailwind + DaisyUI
 
-Archivo: erp-frontend/assets/css/tailwind.css
+## CSS principal de Tailwind
+
+### Archivo: erp-frontend/assets/css/tailwind.css
 ```
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 ```
 
-5.2 Config Tailwind (v3) + DaisyUI v4 + tema
+## Config Tailwind (v3) + DaisyUI v4 + tema
 
-Archivo: erp-frontend/tailwind.config.js
+### Archivo: erp-frontend/tailwind.config.js
 ```
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -160,9 +171,9 @@ export default {
 }
 ```
 
-6) nuxt.config.ts (runtimeConfig + pinia + css + compat)
+## nuxt.config.ts (runtimeConfig + pinia + css + compat)
 
-Archivo: erp-frontend/nuxt.config.ts
+### Archivo: erp-frontend/nuxt.config.ts
 ```
 export default defineNuxtConfig({
   ssr: true,
@@ -196,9 +207,9 @@ export default defineNuxtConfig({
 })
 ```
 
-7) .env (solo nombres)
+# Archivo .env (solo nombres)
 
-Archivo: erp-frontend/.env.example
+Archivo: erp-frontend/.env
 ```
 NUXT_PUBLIC_API_BASE=
 NUXT_PUBLIC_APP_NAME=
