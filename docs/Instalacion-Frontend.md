@@ -23,7 +23,7 @@ mkdir erp-frontend
 cd erp-frontend
 
 # Forzar versión específica de Nuxt 3
-npx nuxi@3.21.0 init .
+npx nuxi@3 init .
 
 # Instalar dependencias iniciales
 npm install
