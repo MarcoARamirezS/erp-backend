@@ -18,10 +18,6 @@ Crear el proyecto asegurando versiones correctas desde el inicio para evitar pro
 ## 1 Crear proyecto Nuxt 3 (forzado)
 
 ```bash
-# Crear carpeta base
-mkdir erp-frontend
-cd erp-frontend
-
 # Forzar versión específica de Nuxt 3
 npm create nuxt@latest erp-frontend -- -t v3
 
