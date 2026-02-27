@@ -211,3 +211,119 @@ NUXT_PUBLIC_API_BASE=
 NUXT_PUBLIC_APP_NAME=
 API_SECRET=
 ```
+
+# Archivos completados
+
+## App.vue
+
+```
+<template>
+  <NuxtLayout>
+    <NuxtPage />
+  </NuxtLayout>
+</template>
+
+<script setup lang="ts">
+import { onMounted } from 'vue';
+import { useTheme } from './composables/useTheme';
+
+const { initTheme } = useTheme()
+
+onMounted(() => {
+  initTheme()
+})
+</script>
+```
+
+## composables/useTheme.ts
+
+```
+import { ref } from 'vue'
+
+const THEME_KEY = 'erp.theme'
+
+export function useTheme () {
+  const theme = ref<'erpLight' | 'erpDark'>('erpLight')
+  function applyTheme(t: 'erpLight' | 'erpDark') {
+    theme.value = t
+    if (process.client) {
+      return
+    }
+    document.documentElement.setAttribute('data-theme', t)
+    localStorage.setItem('THEME_KEY', t)
+  }
+  function initTheme () {
+    if (!process.client) {
+      return
+    }
+    const saved = (localStorage.getItem('THEME_KEY') as 'erpLight' | 'erpDark' | null)
+    applyTheme(saved ?? 'erpLight')
+  }
+  function toggleTheme () {
+    applyTheme(theme.value === 'erpLight' ? 'erpDark' : 'erpLight')
+  }
+  return { theme, initTheme, applyTheme, toggleTheme }
+}
+```
+
+## pages/index.vue
+
+```
+<template>
+  <h1>Hola</h1>
+</template>
+```
+
+## layouts/default.vue
+
+```
+<template></template>
+```
+
+## layouts/auth.vue
+
+```
+<template>
+  <CenteredShell>
+    <slot />
+  </CenteredShell>
+</template>
+
+<script setup lang="ts">
+import CenteredShell from '~/components/layout/CenteredShell.vue';  
+</script>
+```
+
+## components/layout/CenteredShell.vue
+
+```
+<template>
+  <div class="min-h-screen bg-base-200 flex items-center justify-center p-4">
+    <div class="w-full max-w-md">
+      <slot />
+    </div>
+  </div>
+</template>
+```
+
+## components/layout/AppShell.vue
+
+```
+<template>
+
+</template>
+
+<script setup lang="ts">
+// importar la opcion para cambiar de tema
+// importar el store de autenticación
+
+const menu = [
+  { label: 'Dashboard', to: '/dashboard', perm: null },
+  { label: 'Usuarios', to: '/users', perm: 'users:read' },
+  { label: 'Roles', to: '/roles', perm: 'roles:read' },
+  { label: 'Permisos', to: '/permissions', perm: 'permissions:read' },
+  { label: 'Proveedores', to: '/suppliers', perm: 'suppliers:read' },
+  { label: 'Productos', to: '/products', perm: 'products:read' },
+]
+</script>
+```
